@@ -1,0 +1,11 @@
+{
+    "android": {
+      "release": {
+        "keystore": "./certificates/release.keystore",
+        "storePassword": "ZT8YM_P5FCQR",
+        "alias": "release",
+        "password": "ZT8YM_P5FCQR"
+      }
+    }
+  }
+  

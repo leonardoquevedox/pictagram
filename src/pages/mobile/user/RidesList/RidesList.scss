@@ -1,0 +1,25 @@
+@import '../../../../theme/variables.scss';
+@import '../../../../theme/mixins.scss';
+
+.rides-list-page {
+  .app-navbar {
+    width: 100%;
+    &__title {
+      color: $primary;
+    }
+    div:first-of-type {
+      width: 40%;
+    }
+    div:last-child {
+      width: 10%;
+      img {
+        vertical-align: text-bottom;
+      }
+    }
+  }
+  .page-content {
+    padding-top: 16px;
+    padding: 16px;
+    background-color: $white-background;
+  }
+}

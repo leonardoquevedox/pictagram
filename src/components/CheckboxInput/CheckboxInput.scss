@@ -1,0 +1,48 @@
+@import '../../theme/variables.scss';
+
+.checkbox-input {
+  --f7-checkbox-border-radius: 50%;
+  --f7-checkbox-size: 20px;
+  --f7-checkbox-icon-color: #{$primary};
+  --f7-checkbox-inactive-color: #d0d7e1;
+  transition-property: all;
+  transition-duration: 500ms;
+  display: block;
+  margin: auto;
+  border-radius: 8px;
+  padding: 16px;
+  font-size: 16px;
+  height: auto;
+  text-align: left;
+  white-space: pre-wrap;
+  background-color: white;
+  color: $grey-one;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  min-height: 66px;
+  border: 1.5px solid #d0d7e1;
+  cursor: pointer;
+  &.transparent {
+    border-color: transparent;
+    background-color: transparent;
+  }
+  .checkbox {
+    padding: 4.5px;
+    border: 1.5px solid transparent;
+    border-radius: 50%;
+    margin-right: 10px;
+    .icon-checkbox:after {
+      display: none;
+      opacity: 0;
+    }
+  }
+  &.checked {
+    &:not(.transparent) {
+      border-color: $primary;
+    }
+    .checkbox {
+      --f7-checkbox-size: 16px;
+      border-color: $primary;
+    }
+  }
+}

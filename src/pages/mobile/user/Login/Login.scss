@@ -1,0 +1,90 @@
+@import '../../../../theme/variables.scss';
+@import '../../../../theme/mixins.scss';
+
+.login-page {
+  .page-content {
+    background-color: $white-background;
+    padding-bottom: 0px;
+    margin: auto;
+  }
+
+  &__content {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    max-width: 400px;
+    margin: auto;
+    padding: 16px;
+  }
+
+  &__logo {
+    display: block;
+    height: 30vh;
+    min-height: 80px;
+    max-height: 150px;
+    margin: auto;
+    margin-bottom: 24px;
+  }
+
+  &__app-title {
+    color: $tertiary;
+    text-align: center;
+    margin-top: -32px;
+    font-size: 20px;
+    opacity: 0.8;
+  }
+
+  &__form {
+    width: 100%;
+    &.list {
+      margin-top: 0px;
+    }
+  }
+
+  &__paragraph {
+    font-size: 1.6rem;
+    text-align: center;
+    color: $grey-one;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    &:first-of-type {
+      margin-top: 32px;
+    }
+  }
+
+  &__link {
+    font-weight: bold;
+    color: $primary;
+  }
+
+  &__social-icons {
+    margin-top: 24px;
+    .button {
+      padding: 8px;
+      height: auto;
+    }
+    img {
+      vertical-align: middle;
+    }
+  }
+
+  &__vertical-line {
+    &__content {
+      line-height: 32px;
+      padding-right: 16px;
+      padding-left: 16px;
+      margin-left: calc(50% - 16px);
+      background: $white-background;
+      z-index: 2;
+    }
+    p {
+      border-top: 1px solid $black-background;
+      margin-top: -16px;
+      margin-bottom: 16px;
+    }
+  }
+
+  .button-primary.button-fill {
+    margin-top: 16px;
+  }
+}

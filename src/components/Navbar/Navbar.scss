@@ -1,0 +1,37 @@
+@import '../../theme/variables.scss';
+.app-navbar {
+  width: calc(100% - 32px);
+  display: block;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  > div {
+    display: inline-block;
+    align-self: flex-start;
+    &:first-of-type {
+      margin: auto;
+      height: 100%;
+      width: 25%;
+      text-align: left;
+    }
+    &:nth-child(2) {
+      width: 50%;
+      text-align: center;
+    }
+    &:last-child {
+      margin: auto;
+      height: 100%;
+      width: 25%;
+      text-align: right;
+    }
+  }
+  &__title {
+    display: inline-flex;
+    align-self: center;
+    font-size: 16px;
+    text-align: center;
+    color: $primary;
+    font-weight: 600;
+  }
+}

@@ -1,0 +1,39 @@
+@import '../../theme/variables.scss';
+$tabbar-width: 280px;
+$header-height: 64px;
+.app-tabs {
+  --f7-toolbar-height: 60px;
+  .toolbar {
+    z-index: 10000;
+    position: fixed;
+    bottom: 0px;
+    &.tabbar {
+      .toolbar-inner {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+      a.link {
+        text-transform: none;
+        color: $primary;
+        border-top: 2px solid transparent;
+        img {
+          width: 32px;
+          margin: 4px;
+          margin-top: 8px;
+        }
+        span {
+          font-size: 12px;
+          margin-bottom: 8px;
+        }
+        &.tab-link-active {
+          border-top-color: $primary;
+        }
+      }
+    }
+    &.tabs-hidden {
+      .tabbar {
+        display: none;
+      }
+    }
+  }
+}

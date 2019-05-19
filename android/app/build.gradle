@@ -1,0 +1,98 @@
+apply plugin: 'com.android.application'
+def versionPropsFile = file('../version.properties')
+
+def increaseVersionCode() {
+        gradle.taskGraph.whenReady { taskGraph ->
+        if (taskGraph.hasTask(assembleRelease)) {
+                /* when run release task */
+                if (versionPropsFile.canRead()) {
+                    def Properties versionProps = new Properties()
+
+                    versionProps.load(new FileInputStream(versionPropsFile))
+                    def build = versionProps['VERSION_BUILD'].toInteger() + 1
+                    def code = versionProps['VERSION_CODE'].toInteger() + 1
+
+                    versionProps['VERSION_BUILD'] = build.toString()
+                    versionProps['VERSION_CODE'] = code.toString()
+                    versionProps.store(versionPropsFile.newWriter(), null)
+                } else {
+                    throw new GradleException("Could not read version.properties!")
+                }
+            }
+        }
+    }
+
+android {
+    compileSdkVersion 27
+    if (versionPropsFile.canRead()) {
+        def Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionPropsFile))
+        def name = versionProps['VERSION_NAME']
+        def code = versionProps['VERSION_CODE'].toInteger() + 1
+        versionProps['VERSION_CODE']=code.toString()
+        versionProps.store(versionPropsFile.newWriter(), null)
+        defaultConfig {
+            applicationId "com.argo.instant"
+            minSdkVersion 21
+            targetSdkVersion 27
+            versionName name
+            versionCode code
+            testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        }
+        signingConfigs {
+            release {
+                storeFile file(RELEASE_STORE_FILE)
+                storePassword RELEASE_STORE_PASSWORD
+                keyAlias RELEASE_KEY_ALIAS
+                keyPassword RELEASE_KEY_PASSWORD
+            }
+        }
+        buildTypes {
+            release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+                release {
+                    signingConfig signingConfigs.release
+                }
+            }
+        }
+
+        // increaseVersionCode()
+    }
+    else {
+        throw new GradleException("Could not read version.properties!")
+    }
+}
+
+repositories {
+    maven {
+        url  "https://dl.bintray.com/ionic-team/capacitor"
+    }
+    flatDir{
+        dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation project(':capacitor-android')
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation project(':capacitor-cordova-android-plugins')
+    implementation 'com.google.firebase:firebase-messaging:17.4.0'
+    implementation 'com.android.support:support-v4:27.1.1'
+}
+
+apply from: 'capacitor.build.gradle'
+
+try {
+    def servicesJSON = file('google-services.json')
+    if (servicesJSON.text) {
+        apply plugin: 'com.google.gms.google-services'
+    }
+} catch(Exception e) {
+    logger.warn("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+}

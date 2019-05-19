@@ -1,0 +1,8 @@
+@import '../../theme/variables.scss';
+.app-step {
+  vertical-align: super;
+  margin-right: 8px;
+  &:last-of-type {
+    margin-right: 0px;
+  }
+}

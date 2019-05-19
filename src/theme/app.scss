@@ -1,0 +1,67 @@
+@import './variables.scss';
+@import './components.scss';
+@import './icons.scss';
+
+* {
+  font-family: 'Source Sans Pro', sans-serif !important;
+  box-sizing: inherit;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: 65%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 60%;
+  }
+}
+
+div.router-transition {
+  .page-current {
+    pointer-events: all;
+  }
+}
+
+.device-cordova {
+  .page-content {
+    padding-top: 30px;
+    padding-bottom: 0px;
+    &:after {
+      position: fixed;
+      display: block;
+      content: ' ';
+      height: 30px;
+      width: 100vw;
+      top: 0;
+      left: 0;
+      background-color: inherit;
+      z-index: 9999;
+    }
+  }
+}
+
+.device-keyboard-visible {
+  .page-content {
+    margin-top: -50vh;
+    padding-bottom: 100px;
+    height: 200vh;
+  }
+}
+
+.preloader-backdrop {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.preloader-modal {
+  --f7-preloader-modal-bg-color: transparent;
+}
+
+.dialog {
+  --f7-dialog-border-radius: 15px;
+}

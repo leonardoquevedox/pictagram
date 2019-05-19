@@ -1,0 +1,37 @@
+$primary: #ff9500;
+$secondary: #ffcc00;
+$tertiary: #ff5e00;
+
+$positive: #5cf590;
+$warning: #ff9141;
+$negative: #ff4141;
+$informative: #418dff;
+
+$grey-one: #080b1a;
+$grey-two: #3d4045;
+$grey-three: #ececed;
+
+$black-background: #434654;
+$white-background: white;
+
+$white: #ffffff;
+
+$gradient-hue: 30;
+$device-icon-height: 30vh;
+
+/* Framework7 */
+:root {
+  --f7-input-bg-color: white;
+  --f7-input-padding: 16px;
+  --f7-input-font-size: 1.2rem;
+  --f7-input-outline-border-radius: 8px;
+  --f7-input-height: 56px;
+  --f7-input-outline-height: 56px;
+}
+
+.color-blue {
+  --f7-theme-color: #{$primary};
+  --f7-theme-color-rgb: 33, 150, 243;
+  --f7-theme-color-shade: #{$primary};
+  --f7-theme-color-tint: #{$secondary};
+}

@@ -1,0 +1,51 @@
+@import '../../theme/variables.scss';
+
+.app-hardware-indicator {
+    display: flex;
+    align-items: center;
+
+    &__light-container {
+        position: relative;
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        margin-right: 8px;
+    }
+
+    &__outer-light {
+        position: absolute;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: $grey-three;
+        opacity: 0.08;
+
+        &.hw-active {
+            background-color: $positive;
+        }
+    }
+
+    &__inner-light {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background-color: $grey-three;
+        border-radius: 50%;
+
+        &.hw-active {
+            background-color: $positive;
+        }
+    }
+
+    &__label {
+        font-size: 12px;
+        line-height: 16px;
+        font-weight: 600;
+        color: rgba(46, 46, 60, 0.7);
+    }
+}

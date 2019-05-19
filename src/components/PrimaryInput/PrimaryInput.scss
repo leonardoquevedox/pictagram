@@ -1,0 +1,20 @@
+@import '../../theme/variables.scss';
+@import '../../theme/mixins.scss';
+
+.input-primary {
+  --f7-list-item-padding-horizontal: 0px;
+  --f7-input-outline-border-radius: 30px;
+  list-style: none;
+  margin-top: 8px;
+  .item-input-outline {
+    padding-left: 0px;
+    .item-inner {
+      padding: 0px;
+    }
+    .item-input-wrap {
+      input {
+        font-size: 18px;
+      }
+    }
+  }
+}
