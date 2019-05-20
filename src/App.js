@@ -43,8 +43,8 @@ const checkAuth = (to, from, resolve) => {
 }
 
 const f7params = {
-  name: 'Frete Fácil',
-  id: 'com.argo.instant',
+  name: 'Pictagram',
+  id: 'com.quitolabs.pictagram',
   routes: [
     // --- Mobile pages
     {

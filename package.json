@@ -4,8 +4,8 @@
   "homepage": "./",
   "private": true,
   "capacitor": {
-    "appId": "com.argo.instant",
-    "appName": "Frete Fácil",
+    "appId": "com.quitolabs.pictagram",
+    "appName": "Pictagram",
     "bundledWebRuntime": false,
     "npmClient": "yarn",
     "webDir": "build"
@@ -13,8 +13,6 @@
   "scripts": {
     "start": "node app.js",
     "appcenter": "appcenter",
-    "capacitor": "cap",
-    "cross-env": "cross-env",
     "local": "cross-env REACT_APP_STAGE=local cross-env react-scripts start",
     "dev": "cross-env REACT_APP_STAGE=dev cross-env react-scripts start",
     "homolog": "cross-env REACT_APP_STAGE=homolog react-scripts start",
@@ -45,8 +43,6 @@
     "@capacitor/android": "1.0.0-beta.22",
     "@capacitor/cli": "1.0.0-beta.22",
     "@capacitor/core": "1.0.0-beta.22",
-    "cordova-plugin-ble-central": "1.2.2",
-    "cordova-plugin-device": "2.0.2",
     "cordova.plugins.diagnostic": "3.7.2",
     "cross-env": "^5.2.0",
     "dotenv": "^7.0.0",

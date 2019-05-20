@@ -1,58 +1,50 @@
-# Frete Fácil
+# Pictagram
 
-### React universal application used by Argo in order to provide first class automobile insurance coverage.
+> Universal PWA built with React & Capacitor.
 
-[![trinca-logo](https://imgur.com/InW6cSu.png)](https://trin.ca)
+[![basic-merchandising](https://imgur.com/LNOYczf.png)](https://github.com/leopq)
 
-First developed and deployed @ 2019.
+## Quickstart
+Firsts thing's first:
+* Create a github user.
+* Take note of this user (in the steps above, we'll be using `johndoe`, yet be sure to replace with your actual user for them to work).
+* Open a terminal and fire the commands below:
+```
+$ git clone https://github.com/leopq/leopq.github.io johndoe.github.io
+```
 
-## Prerequisites
+```
+$ cd johndoe.github.io
+```
 
-- [Node.js (v8+)](https://nodejs.org/en/download)
-- [Yarn](https://yarnpkg.com/en/)
-- [ESLint](https://eslint.org/)
-- [Prettier](https://prettier.io/)
+In order to install the project dependencies, run:
 
-## Installing dependencies:
+```
+$ yarn
+```
 
-- From the root of the project, run the following command:
-  ```sh
-  $ yarn
-  ```
+#### Customizing
 
-## Running:
+From the root of the cloned repository, run:
 
-- From the root of the project, run the following command:
+```sh
+$ yarn dev
+```
 
-  ```sh
-  $ yarn dev
-  ```
+#### Deploy
 
-  or (for prod environment)
+In your template, you can declare the ngx-credit-card-br as the following:
+```sh
+$ yarn build
+```
 
-  ```sh
-  $ yarn prod
-  ```
+```sh
+$ git subtree push --prefix public origin gh-pages
+```
 
-## Building:
+### And that's all there is about it.
+* Any doubts? Fell free to open an issue.
+* Improvements? Pull requests are always come!
+* Suggestions? Of course: Let's [talk](https://twitter.com/leopq)!
 
-- From the root of the project, run the following command:
-
-  ```sh
-  $ yarn build:dev
-  ```
-
-  or (for prod environment)
-
-  ```sh
-  $ yarn build:prod
-  ```
-
-## And that's all there is about it.
-
-- Any doubts? Fell free to open an issue.
-- Improvements? Pull requests are always come!
-
-##### 🚀 Good luck and long live open source!
-
-##### @ Leonardo Quevedo, 2019.
+##### MIT @ Leonardo Quevedo. 2019.
