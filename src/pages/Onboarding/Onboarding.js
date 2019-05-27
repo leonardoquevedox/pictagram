@@ -36,7 +36,7 @@ class Onboarding extends React.Component {
   }
 
   render() {
-    const pageTitle = 'Argo Instant: Entrar'
+    const pageTitle = 'Pictagram: Entrar'
     return (
       <Page className="onboarding-page">
         <Helmet title={pageTitle} />
@@ -45,13 +45,13 @@ class Onboarding extends React.Component {
             <List className="onboarding-page__form">
               <Swiper pagination>
                 <SwiperSlide>
-                  <img src={slide01Pic} alt="Argo Instant" className="onboarding-page__logo" />
+                  <img src={slide01Pic} alt="Pictagram" className="onboarding-page__logo" />
                 </SwiperSlide>
                 <SwiperSlide>
-                  <img src={slide02Pic} alt="Argo Instant" className="onboarding-page__logo" />
+                  <img src={slide02Pic} alt="Pictagram" className="onboarding-page__logo" />
                 </SwiperSlide>
                 <SwiperSlide>
-                  <img src={slide03Pic} alt="Argo Instant" className="onboarding-page__logo" />
+                  <img src={slide03Pic} alt="Pictagram" className="onboarding-page__logo" />
                 </SwiperSlide>
               </Swiper>
               <PrimaryButton

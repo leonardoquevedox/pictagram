@@ -77,7 +77,8 @@ export const readProfile = () => dispatch => {
   })
 }
 
-export const verifyEmail = email => dispatch => userService.getByEmail(email).then(response => response.data.data)
+export const verifyEmail = email => dispatch =>
+  userService.getByEmail(email).then(response => response.data.data)
 
 /* --------- Update --------- */
 export const UPDATE_PROFILE_START = 'UPDATE_PROFILE_START'
@@ -120,9 +121,7 @@ export const removeProfile = () => ({
   type: REMOVE_PROFILE
 })
 
-export const logout = () => dispatch => {
-  return authService.logout()
-}
+export const logout = () => dispatch => authService.logout()
 
 /* --------- Authenticate --------- */
 export const AUTHENTICATE_START = 'AUTHENTICATE_START'
@@ -193,20 +192,20 @@ export const createRiskForm = data => dispatch => {
 }
 
 /* --------- Create --------- */
-export const START_CNH_PICTURE_PREVIEW_START = 'START_CNH_PICTURE_PREVIEW_START'
-export const START_CNH_PICTURE_PREVIEW_ERROR = 'START_CNH_PICTURE_PREVIEW_ERROR'
-export const START_CNH_PICTURE_PREVIEW_SUCCESS = 'START_CNH_PICTURE_PREVIEW_SUCCESS'
+export const START_CURRENT_PICTURE_PREVIEW_START = 'START_CURRENT_PICTURE_PREVIEW_START'
+export const START_CURRENT_PICTURE_PREVIEW_ERROR = 'START_CURRENT_PICTURE_PREVIEW_ERROR'
+export const START_CURRENT_PICTURE_PREVIEW_SUCCESS = 'START_CURRENT_PICTURE_PREVIEW_SUCCESS'
 
 export const startCnhPicturePreviewStart = () => ({
-  type: START_CNH_PICTURE_PREVIEW_START
+  type: START_CURRENT_PICTURE_PREVIEW_START
 })
 
 export const startCnhPicturePreviewError = () => ({
-  type: START_CNH_PICTURE_PREVIEW_ERROR
+  type: START_CURRENT_PICTURE_PREVIEW_ERROR
 })
 
 export const startCnhPicturePreviewSuccess = data => ({
-  type: START_CNH_PICTURE_PREVIEW_SUCCESS,
+  type: START_CURRENT_PICTURE_PREVIEW_SUCCESS,
   data
 })
 
@@ -227,20 +226,20 @@ export const startCnhPicturePreview = videoElement => dispatch => {
 }
 
 /* --------- Create --------- */
-export const TAKE_CNH_PICTURE_START = 'TAKE_CNH_PICTURE_START'
-export const TAKE_CNH_PICTURE_ERROR = 'TAKE_CNH_PICTURE_ERROR'
-export const TAKE_CNH_PICTURE_SUCCESS = 'TAKE_CNH_PICTURE_SUCCESS'
+export const TAKE_CURRENT_PICTURE_START = 'TAKE_CURRENT_PICTURE_START'
+export const TAKE_CURRENT_PICTURE_ERROR = 'TAKE_CURRENT_PICTURE_ERROR'
+export const TAKE_CURRENT_PICTURE_SUCCESS = 'TAKE_CURRENT_PICTURE_SUCCESS'
 
 export const takeCnhPictureStart = () => ({
-  type: TAKE_CNH_PICTURE_START
+  type: TAKE_CURRENT_PICTURE_START
 })
 
 export const takeCnhPictureError = () => ({
-  type: TAKE_CNH_PICTURE_ERROR
+  type: TAKE_CURRENT_PICTURE_ERROR
 })
 
 export const takeCnhPictureSuccess = data => ({
-  type: TAKE_CNH_PICTURE_SUCCESS,
+  type: TAKE_CURRENT_PICTURE_SUCCESS,
   data
 })
 
@@ -262,26 +261,26 @@ export const takeCnhPicture = videoElement => dispatch => {
 }
 
 /* --------- Create --------- */
-export const SAVE_CNH_PICTURE_START = 'SAVE_CNH_PICTURE_START'
-export const SAVE_CNH_PICTURE_ERROR = 'SAVE_CNH_PICTURE_ERROR'
-export const SAVE_CNH_PICTURE_PROGRESS = 'SAVE_CNH_PICTURE_PROGRESS'
-export const SAVE_CNH_PICTURE_SUCCESS = 'SAVE_CNH_PICTURE_SUCCESS'
+export const SAVE_CURRENT_PICTURE_START = 'SAVE_CURRENT_PICTURE_START'
+export const SAVE_CURRENT_PICTURE_ERROR = 'SAVE_CURRENT_PICTURE_ERROR'
+export const SAVE_CURRENT_PICTURE_PROGRESS = 'SAVE_CURRENT_PICTURE_PROGRESS'
+export const SAVE_CURRENT_PICTURE_SUCCESS = 'SAVE_CURRENT_PICTURE_SUCCESS'
 
 export const saveCnhPictureStart = () => ({
-  type: SAVE_CNH_PICTURE_START
+  type: SAVE_CURRENT_PICTURE_START
 })
 
 export const saveCnhPictureError = () => ({
-  type: SAVE_CNH_PICTURE_ERROR
+  type: SAVE_CURRENT_PICTURE_ERROR
 })
 
 export const saveCnhPictureSuccess = data => ({
-  type: SAVE_CNH_PICTURE_SUCCESS,
+  type: SAVE_CURRENT_PICTURE_SUCCESS,
   data
 })
 
 export const saveCnhPictureProgress = data => ({
-  type: SAVE_CNH_PICTURE_PROGRESS,
+  type: SAVE_CURRENT_PICTURE_PROGRESS,
   data
 })
 
@@ -324,10 +323,13 @@ export const requestNewPasswordSuccess = data => ({
 
 export const requestNewPassword = data => dispatch => {
   dispatch(requestNewPasswordStart())
-  return userService.requestPassword(data).then(response => {
-    dispatch(requestNewPasswordSuccess(response.data.data))
-    return response.data.data
-  }).catch(e => {
-    dispatch(requestNewPasswordError())
-  })
+  return userService
+    .requestPassword(data)
+    .then(response => {
+      dispatch(requestNewPasswordSuccess(response.data.data))
+      return response.data.data
+    })
+    .catch(e => {
+      dispatch(requestNewPasswordError())
+    })
 }

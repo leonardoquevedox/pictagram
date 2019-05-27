@@ -13,19 +13,6 @@ import { Page } from 'framework7-react'
 import logo from '../../assets/vectors/logo.svg'
 
 import Navbar from '../../components/Navbar'
-import InsuranceToggle from '../../components/InsuranceToggle'
-import HardwareIndicator from '../../components/HardwareIndicator'
-import UtilizationCard from '../../components/UtilizationCard'
-import AvailableCreditsCard from '../../components/AvailableCreditsCard'
-
-import { readCredit } from '../../actions/credit'
-import { checkDeviceProximity, watchDeviceProximity } from '../../actions/device'
-import {
-  checkBluetoothState,
-  checkGpsState,
-  watchBluetoothStateChanges,
-  watchGpsStateChanges
-} from '../../actions/hardware'
 
 import './Home.scss'
 
@@ -58,8 +45,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { device, bluetooth, gps, user } = this.props
-    const pageTitle = 'Argo Instant: Home'
+    const pageTitle = 'Pictagram: Home'
     return (
       <Page className="home-page">
         <Helmet title={pageTitle} />
@@ -70,51 +56,15 @@ class Home extends React.Component {
           <div className="app-navbar__center" />
           <div className="app-navbar__right" />
         </Navbar>
-        <div className="home-page__content">
-          <div className="home-page__toggle-container">
-            <InsuranceToggle isActive={false} />
-          </div>
-          <div className="home-page__indicators-container">
-            <HardwareIndicator
-              label="Bluetooth"
-              active={bluetooth && bluetooth.isEnabled ? 1 : 0}
-            />
-            <HardwareIndicator label="GPS" active={gps && gps.isEnabled ? 1 : 0} />
-            <HardwareIndicator label="Device" active={device && device.isNearby ? 1 : 0} />
-          </div>
-          <div className="home-page__cards-container">
-            <AvailableCreditsCard
-              value={this.props.credit.quantity}
-              onClick={() => this.$f7router.navigate({ name: 'Credits' })}
-            />
-            <UtilizationCard
-              value={user && user.utilizations ? user.utilizations.length : ''}
-              onClick={() => this.$f7router.navigate({ name: 'Utilization' })}
-            />
-          </div>
-        </div>
+        <div className="home-page__content" />
       </Page>
     )
   }
 }
 
-const mapStateToProps = state => ({
-  user: state.user.profile,
-  device: state.device,
-  bluetooth: state.hardware.bluetooth,
-  gps: state.hardware.gps,
-  credit: state.credit.current
-})
+const mapStateToProps = state => ({})
 
-const mapDispatchToProps = dispatch => ({
-  checkBluetoothState: dispatch(checkBluetoothState()),
-  watchBluetoothStateChanges: dispatch(watchBluetoothStateChanges()),
-  checkGpsState: dispatch(checkGpsState()),
-  watchGpsStateChanges: dispatch(watchGpsStateChanges()),
-  checkDeviceProximity: dispatch(checkDeviceProximity()),
-  watchDeviceProximity: dispatch(watchDeviceProximity()),
-  readCredit: () => dispatch(readCredit())
-})
+const mapDispatchToProps = dispatch => ({})
 
 export default connect(
   mapStateToProps,

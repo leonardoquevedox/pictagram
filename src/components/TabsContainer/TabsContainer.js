@@ -1,7 +1,7 @@
 /**
  * @license MIT
  * @version 1.1.0
- * @author Trinca
+ * @author Leonardo Quevedo
  * @description Adaptive navbar.
  */
 
@@ -10,17 +10,13 @@ import { Link, Toolbar, Tabs, Tab, Page } from 'framework7-react'
 
 import { connect } from 'react-redux'
 
-
-
 import iconHome from '../../assets/vectors/tab-icon-home.svg'
-import iconPolicy from '../../assets/vectors/tab-icon-policy.svg'
+import iconRides from '../../assets/vectors/tab-icon-policy.svg'
 import iconContact from '../../assets/vectors/tab-icon-contact.svg'
-import iconProfile from '../../assets/vectors/tab-icon-profile.svg'
 
 import './TabsContainer.scss'
-import Contact from '../../pages/Contact'
-import Home from '../../pages/Home'
-import Policy from '../../pages/Policy'
+import PictureTaking from '../../pages/PictureTaking'
+import PictureFilter from '../../pages/PictureFilter'
 import Profile from '../../pages/Profile'
 
 const rootPages = [
@@ -28,24 +24,18 @@ const rootPages = [
     path: 'start',
     label: 'Início',
     icon: iconHome,
-    component: Home
+    component: PictureTaking
   },
   {
-    path: 'policy',
-    label: 'Apólice',
-    icon: iconPolicy,
-    component: Policy
+    path: 'rides',
+    label: 'Meus Fretes',
+    icon: iconRides,
+    component: PictureFilter
   },
   {
     path: 'contact',
-    label: 'Contato',
+    label: 'Opções',
     icon: iconContact,
-    component: Contact
-  },
-  {
-    path: 'profile',
-    label: 'Conta',
-    icon: iconProfile,
     component: Profile
   }
 ]
@@ -72,7 +62,7 @@ class TabsContainer extends React.Component {
                 this.setState({ selectedTab: tab })
               }}>
               <img src={tab.icon} alt={tab.label} />
-              <span>{tab.label}</span>
+              {/* <span>{tab.label}</span> */}
             </Link>
           ))}
         </Toolbar>
@@ -95,10 +85,7 @@ const mapStateToProps = state => ({
   ui: state.ui
 })
 
-const mapDispatchToProps = dispatch => ({
-
-
-})
+const mapDispatchToProps = dispatch => ({})
 
 export default connect(
   mapStateToProps,

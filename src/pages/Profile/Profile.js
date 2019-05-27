@@ -27,7 +27,7 @@ class Profile extends React.Component {
   }
 
   render() {
-    const pageTitle = 'Argo Instant: Conta'
+    const pageTitle = 'Pictagram: Conta'
 
     return (
       <Page className="profile-page">

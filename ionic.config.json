@@ -1,7 +1,0 @@
-{
-  "name": "Instant",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "custom"
-}

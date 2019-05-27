@@ -7,7 +7,7 @@
 
 import React from 'react'
 import Helmet from 'react-helmet'
-import { Page, PageContent, List, Link } from 'framework7-react'
+import { Page, PageContent, List } from 'framework7-react'
 import { connect } from 'react-redux'
 import isEmpty from 'validator/lib/isEmpty'
 
@@ -19,10 +19,8 @@ import logoWithIcon from '../../assets/vectors/logo-with-icon.svg'
 import './Login.scss'
 
 import { authenticate } from '../../actions/user'
-import { setUserDevices } from '../../actions/device'
 
 import authService from '../../services/auth'
-import redirectService from '../../services/redirect'
 
 class Login extends React.Component {
   constructor(props) {
@@ -51,12 +49,7 @@ class Login extends React.Component {
         setTimeout(() => {
           this.setState({ isLoading: false })
           authService.setUserToken(data.token)
-          this.props.setUserDevices(data.devices)
-          if (data.firstAccess) {
-            this.$f7router.navigate({ name: 'NewPassword' })
-          } else {
-            this.$f7router.navigate({ name: redirectService.getRootPage() })
-          }
+          this.$f7router.navigate({ name: 'Home' })
         }, 2000)
       })
       .catch(e => {
@@ -69,12 +62,8 @@ class Login extends React.Component {
       })
   }
 
-  redirectToForgotPasswordPage() {
-    this.$f7router.navigate({ name: 'ForgotPassword' })
-  }
-
   render() {
-    const pageTitle = 'Argo Instant: Entrar'
+    const pageTitle = 'Pictagram: Entrar'
     const { user } = this.state
     return (
       <Page className="login-page">
@@ -82,7 +71,7 @@ class Login extends React.Component {
         <PageContent>
           <article className="login-page__content">
             <List className="login-page__form">
-              <img src={logoWithIcon} alt="Argo Instant" className="login-page__logo" />
+              <img src={logoWithIcon} alt="Pictagram" className="login-page__logo" />
               <PrimaryInput
                 value={user.email}
                 onChange={e => {
@@ -110,13 +99,6 @@ class Login extends React.Component {
                 }}>
                 Entrar
               </PrimaryButton>
-              <p className="login-page__paragraph">
-                <Link
-                  className="login-page__link"
-                  onClick={() => this.redirectToForgotPasswordPage()}>
-                  Esqueci minha senha
-                </Link>
-              </p>
             </List>
           </article>
         </PageContent>
@@ -128,8 +110,7 @@ class Login extends React.Component {
 const mapStateToProps = state => ({})
 
 const mapDispatchToProps = dispatch => ({
-  authenticate: user => dispatch(authenticate(user)),
-  setUserDevices: devices => dispatch(setUserDevices(devices))
+  authenticate: user => dispatch(authenticate(user))
 })
 
 export default connect(

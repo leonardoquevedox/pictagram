@@ -14,30 +14,14 @@ import { createLogger } from 'redux-logger'
 
 import { INSTANT_LOCAL_STORAGE } from '../config/consts'
 
-import uiReducers from './ui'
 import userReducers from './user'
-import vehicleReducers from './vehicle'
-import insuranceReducers from './insurance'
-import deviceReducers from './device'
-import hardwareReducers from './hardware'
 import virtualKeyboard from './virtualKeyboard'
-import integrationReducers from './integration'
-import checkoutReducers from './checkout'
-import creditReducers from './credit'
 
 const logger = createLogger()
 
 const appReducer = combineReducers({
-  ui: uiReducers,
   user: userReducers,
-  device: deviceReducers,
-  vehicle: vehicleReducers,
-  insurance: insuranceReducers,
-  hardware: hardwareReducers,
-  keyboard: virtualKeyboard,
-  integration: integrationReducers,
-  checkout: checkoutReducers,
-  credit: creditReducers
+  keyboard: virtualKeyboard
 })
 
 const persistConfig = {
@@ -45,7 +29,7 @@ const persistConfig = {
   storage,
   transforms: [
     createBlacklistFilter('vehicle', ['video']),
-    createBlacklistFilter('user', ['cnhPicture'])
+    createBlacklistFilter('user', ['currentPicture'])
   ]
 }
 

@@ -15,12 +15,12 @@ import {
   CREATE_RISK_FORM_START,
   CREATE_RISK_FORM_ERROR,
   CREATE_RISK_FORM_SUCCESS,
-  TAKE_CNH_PICTURE_START,
-  TAKE_CNH_PICTURE_ERROR,
-  TAKE_CNH_PICTURE_SUCCESS,
-  SAVE_CNH_PICTURE_START,
-  SAVE_CNH_PICTURE_ERROR,
-  SAVE_CNH_PICTURE_SUCCESS,
+  TAKE_CURRENT_PICTURE_START,
+  TAKE_CURRENT_PICTURE_ERROR,
+  TAKE_CURRENT_PICTURE_SUCCESS,
+  SAVE_CURRENT_PICTURE_START,
+  SAVE_CURRENT_PICTURE_ERROR,
+  SAVE_CURRENT_PICTURE_SUCCESS,
   REMOVE_PROFILE,
   REQUEST_NEW_PASSWORD_START,
   REQUEST_NEW_PASSWORD_ERROR,
@@ -29,7 +29,7 @@ import {
 
 const initialState = {
   profile: {},
-  cnhPicture: {
+  currentPicture: {
     width: 0,
     height: 0,
     src: ''
@@ -50,11 +50,11 @@ export default (state = initialState, action) => {
     case REMOVE_PROFILE:
       return { ...state, profile: {} }
 
-    case TAKE_CNH_PICTURE_SUCCESS:
-      return { ...state, cnhPicture: action.data }
+    case TAKE_CURRENT_PICTURE_SUCCESS:
+      return { ...state, currentPicture: action.data }
 
-    case SAVE_CNH_PICTURE_SUCCESS:
-      return { ...state, cnhPicture: {} }
+    case SAVE_CURRENT_PICTURE_SUCCESS:
+      return { ...state, currentPicture: {} }
 
     case REQUEST_NEW_PASSWORD_SUCCESS:
       return { ...state }
@@ -70,10 +70,10 @@ export default (state = initialState, action) => {
     case CREATE_RISK_FORM_START:
     case CREATE_RISK_FORM_ERROR:
     case CREATE_RISK_FORM_SUCCESS:
-    case TAKE_CNH_PICTURE_START:
-    case TAKE_CNH_PICTURE_ERROR:
-    case SAVE_CNH_PICTURE_START:
-    case SAVE_CNH_PICTURE_ERROR:
+    case TAKE_CURRENT_PICTURE_START:
+    case TAKE_CURRENT_PICTURE_ERROR:
+    case SAVE_CURRENT_PICTURE_START:
+    case SAVE_CURRENT_PICTURE_ERROR:
     case REQUEST_NEW_PASSWORD_START:
     case REQUEST_NEW_PASSWORD_ERROR:
     default:

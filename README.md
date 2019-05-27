@@ -6,15 +6,13 @@
 
 ## Quickstart
 Firsts thing's first:
-* Create a github user.
-* Take note of this user (in the steps above, we'll be using `johndoe`, yet be sure to replace with your actual user for them to work).
 * Open a terminal and fire the commands below:
 ```
-$ git clone https://github.com/leopq/leopq.github.io johndoe.github.io
+$ git clone https://github.com/leopq/pictagram
 ```
 
 ```
-$ cd johndoe.github.io
+$ cd pictagram
 ```
 
 In order to install the project dependencies, run:
