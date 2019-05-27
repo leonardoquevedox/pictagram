@@ -13,7 +13,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import Framework7React from 'framework7-react'
-import Framework7 from 'framework7/framework7.esm.bundle'
+import Framework7 from 'framework7'
 import { PersistGate } from 'redux-persist/integration/react'
 
 import reducers from './reducers'
