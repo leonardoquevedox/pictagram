@@ -61,7 +61,7 @@ class PictureFilter extends React.Component {
   }
 
   render() {
-    const pageTitle = 'Pictagram: CNH'
+    const pageTitle = 'Pictagram'
     const { currentPicture } = this.props
     const renderBackButton = () =>
       this.canGoBack() && (

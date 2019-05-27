@@ -77,7 +77,7 @@ class PictureTaking extends React.Component {
   }
 
   render() {
-    const pageTitle = 'Pictagram: CNH'
+    const pageTitle = 'Pictagram'
     const renderBackButton = () =>
       this.canGoBack() && (
         <Link

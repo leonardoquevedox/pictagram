@@ -16,7 +16,7 @@
     "android:distribute:prod": "capbox distribute android --stage production",
     "deploy": "node scripts/deploy/cloud",
     "on:deploy": "node scripts/postdeploy",
-    "stats": "react-scripts build --stats && webpack-bundle-analyzer ./build/bundle-stats.json"
+    "stats": "react-scripts build --stats && npx webpack-bundle-analyzer ./build/bundle-stats.json"
   },
   "dependencies": {
     "@capacitor/android": "1.0.0-beta.22",

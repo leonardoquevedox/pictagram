@@ -27,7 +27,7 @@ class Profile extends React.Component {
   }
 
   render() {
-    const pageTitle = 'Pictagram: Conta'
+    const pageTitle = 'Pictagram'
 
     return (
       <Page className="profile-page">

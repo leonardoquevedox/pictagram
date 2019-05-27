@@ -45,7 +45,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const pageTitle = 'Pictagram: Home'
+    const pageTitle = 'Pictagram'
     return (
       <Page className="home-page">
         <Helmet title={pageTitle} />

@@ -36,7 +36,7 @@ class Onboarding extends React.Component {
   }
 
   render() {
-    const pageTitle = 'Pictagram: Entrar'
+    const pageTitle = 'Pictagram'
     return (
       <Page className="onboarding-page">
         <Helmet title={pageTitle} />

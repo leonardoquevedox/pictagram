@@ -63,7 +63,7 @@ class Login extends React.Component {
   }
 
   render() {
-    const pageTitle = 'Pictagram: Entrar'
+    const pageTitle = 'Pictagram'
     const { user } = this.state
     return (
       <Page className="login-page">
