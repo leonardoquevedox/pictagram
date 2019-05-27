@@ -1,8 +1,8 @@
 {
-  "name": "Pictagram",
-  "short_name": "Pictagram",
-  "theme_color": "#ff9500",
-  "background_color": "#ff9500",
+  "name": "Argo Instant",
+  "short_name": "Argo Instant",
+  "theme_color": "#1082f3",
+  "background_color": "#1082f3",
   "display": "standalone",
   "orientation": "portrait",
   "start_url": ".",

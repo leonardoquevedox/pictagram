@@ -32,7 +32,7 @@ android {
         versionProps['VERSION_CODE']=code.toString()
         versionProps.store(versionPropsFile.newWriter(), null)
         defaultConfig {
-            applicationId "com.quitolabs.pictagram"
+            applicationId "com.argo.instant"
             minSdkVersion 21
             targetSdkVersion 27
             versionName name

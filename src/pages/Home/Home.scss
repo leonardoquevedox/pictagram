@@ -1,0 +1,43 @@
+@import '../../theme/variables.scss';
+@import '../../theme/mixins.scss';
+
+.home-page {
+  .page-content {
+    padding-top: 16px;
+    padding: 16px;
+    background-color: $white-background;
+  }
+  .app-navbar {
+    width: 100%;
+    &__title {
+      color: $primary;
+    }
+    div:first-of-type {
+      width: 40%;
+      text-align: left;
+    }
+    div:last-child {
+      width: 10%;
+      img {
+        vertical-align: text-bottom;
+      }
+    }
+  }
+
+  &__indicators-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-bottom: 16px;
+  }
+
+  &__cards-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .button-primary.button-fill {
+    margin-top: 16px;
+  }
+}

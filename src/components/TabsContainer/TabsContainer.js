@@ -1,7 +1,7 @@
 /**
  * @license MIT
  * @version 1.1.0
- * @author Leonardo Quevedo
+ * @author Trinca
  * @description Adaptive navbar.
  */
 
@@ -10,33 +10,43 @@ import { Link, Toolbar, Tabs, Tab, Page } from 'framework7-react'
 
 import { connect } from 'react-redux'
 
+
+
 import iconHome from '../../assets/vectors/tab-icon-home.svg'
-import iconRides from '../../assets/vectors/tab-icon-policy.svg'
+import iconPolicy from '../../assets/vectors/tab-icon-policy.svg'
 import iconContact from '../../assets/vectors/tab-icon-contact.svg'
+import iconProfile from '../../assets/vectors/tab-icon-profile.svg'
 
 import './TabsContainer.scss'
-import CreateRide from '../../pages/mobile/user/CreateRide'
-import RidesList from '../../pages/mobile/user/RidesList'
-import Settings from '../../pages/mobile/user/Settings'
+import Contact from '../../pages/Contact'
+import Home from '../../pages/Home'
+import Policy from '../../pages/Policy'
+import Profile from '../../pages/Profile'
 
 const rootPages = [
   {
     path: 'start',
     label: 'Início',
     icon: iconHome,
-    component: CreateRide
+    component: Home
   },
   {
-    path: 'rides',
-    label: 'Meus Fretes',
-    icon: iconRides,
-    component: RidesList
+    path: 'policy',
+    label: 'Apólice',
+    icon: iconPolicy,
+    component: Policy
   },
   {
     path: 'contact',
-    label: 'Opções',
+    label: 'Contato',
     icon: iconContact,
-    component: Settings
+    component: Contact
+  },
+  {
+    path: 'profile',
+    label: 'Conta',
+    icon: iconProfile,
+    component: Profile
   }
 ]
 
@@ -62,7 +72,7 @@ class TabsContainer extends React.Component {
                 this.setState({ selectedTab: tab })
               }}>
               <img src={tab.icon} alt={tab.label} />
-              {/* <span>{tab.label}</span> */}
+              <span>{tab.label}</span>
             </Link>
           ))}
         </Toolbar>
@@ -85,7 +95,10 @@ const mapStateToProps = state => ({
   ui: state.ui
 })
 
-const mapDispatchToProps = dispatch => ({})
+const mapDispatchToProps = dispatch => ({
+
+
+})
 
 export default connect(
   mapStateToProps,

@@ -6,6 +6,7 @@ import cameraService from '../services/camera'
 export const CREATE_PROFILE_START = 'CREATE_PROFILE_START'
 export const CREATE_PROFILE_ERROR = 'CREATE_PROFILE_ERROR'
 export const CREATE_PROFILE_SUCCESS = 'CREATE_PROFILE_SUCCESS'
+export const SAVE_PROFILE = 'SAVE_PROFILE'
 
 export const createProfileStart = () => ({
   type: CREATE_PROFILE_START
@@ -26,8 +27,8 @@ export const createProfile = data => dispatch => {
     userService
       .create(data)
       .then(response => {
-        dispatch(createProfileSuccess(response.data))
-        resolve(response.data)
+        dispatch(createProfileSuccess(response.data.data))
+        resolve(response.data.data)
       })
       .catch(e => {
         dispatch(createProfileError(e))
@@ -35,6 +36,12 @@ export const createProfile = data => dispatch => {
       })
   })
 }
+
+export const saveProfile = data => dispatch =>
+  new Promise(resolve => {
+    dispatch({ type: SAVE_PROFILE, data })
+    resolve(data)
+  })
 
 /* --------- Read --------- */
 export const READ_PROFILE_START = 'READ_PROFILE_START'
@@ -60,8 +67,8 @@ export const readProfile = () => dispatch => {
     userService
       .read()
       .then(response => {
-        dispatch(readProfileSuccess(response.data))
-        resolve(response.data)
+        dispatch(readProfileSuccess(response.data.data))
+        resolve(response.data.data)
       })
       .catch(e => {
         dispatch(readProfileError(e))
@@ -69,6 +76,8 @@ export const readProfile = () => dispatch => {
       })
   })
 }
+
+export const verifyEmail = email => dispatch => userService.getByEmail(email).then(response => response.data.data)
 
 /* --------- Update --------- */
 export const UPDATE_PROFILE_START = 'UPDATE_PROFILE_START'
@@ -94,8 +103,8 @@ export const updateProfile = data => dispatch => {
     userService
       .update(data)
       .then(response => {
-        dispatch(updateProfileSuccess(response.data))
-        resolve(response.data)
+        dispatch(updateProfileSuccess(data))
+        resolve(data)
       })
       .catch(e => {
         dispatch(updateProfileError(e))
@@ -112,8 +121,6 @@ export const removeProfile = () => ({
 })
 
 export const logout = () => dispatch => {
-  dispatch(removeProfile())
-
   return authService.logout()
 }
 
@@ -141,8 +148,8 @@ export const authenticate = data => dispatch => {
     authService
       .login(data)
       .then(response => {
-        dispatch(authenticateSuccess(response.data))
-        resolve(response.data)
+        dispatch(authenticateSuccess(response.data.data))
+        resolve(response.data.data)
       })
       .catch(e => {
         dispatch(authenticateError(e))
@@ -175,11 +182,45 @@ export const createRiskForm = data => dispatch => {
     userService
       .createRiskForm(data)
       .then(response => {
-        dispatch(createRiskFormSuccess(response.data))
-        resolve(response.data)
+        dispatch(createRiskFormSuccess(response.data.data))
+        resolve(response.data.data)
       })
       .catch(e => {
         dispatch(createRiskFormError(e))
+        reject(e)
+      })
+  })
+}
+
+/* --------- Create --------- */
+export const START_CNH_PICTURE_PREVIEW_START = 'START_CNH_PICTURE_PREVIEW_START'
+export const START_CNH_PICTURE_PREVIEW_ERROR = 'START_CNH_PICTURE_PREVIEW_ERROR'
+export const START_CNH_PICTURE_PREVIEW_SUCCESS = 'START_CNH_PICTURE_PREVIEW_SUCCESS'
+
+export const startCnhPicturePreviewStart = () => ({
+  type: START_CNH_PICTURE_PREVIEW_START
+})
+
+export const startCnhPicturePreviewError = () => ({
+  type: START_CNH_PICTURE_PREVIEW_ERROR
+})
+
+export const startCnhPicturePreviewSuccess = data => ({
+  type: START_CNH_PICTURE_PREVIEW_SUCCESS,
+  data
+})
+
+export const startCnhPicturePreview = videoElement => dispatch => {
+  dispatch(startCnhPicturePreviewStart())
+  return new Promise((resolve, reject) => {
+    cameraService
+      .startLivePreview(videoElement)
+      .then(() => {
+        dispatch(startCnhPicturePreviewSuccess())
+        resolve()
+      })
+      .catch(e => {
+        dispatch(startCnhPicturePreviewError(e))
         reject(e)
       })
   })
@@ -203,11 +244,11 @@ export const takeCnhPictureSuccess = data => ({
   data
 })
 
-export const takeCnhPicture = () => dispatch => {
+export const takeCnhPicture = videoElement => dispatch => {
   dispatch(takeCnhPictureStart())
   return new Promise((resolve, reject) => {
     cameraService
-      .takePicture()
+      .takePicture(videoElement)
       .then(picture => {
         dispatch(takeCnhPictureSuccess(picture))
         resolve(picture)
@@ -250,8 +291,8 @@ export const saveCnhPicture = data => dispatch => {
     userService.saveCnhPicture(
       data,
       response => {
-        dispatch(saveCnhPictureSuccess(response.data))
-        resolve(response.data)
+        dispatch(saveCnhPictureSuccess(response.data.data))
+        resolve(response.data.data)
       },
       e => {
         dispatch(saveCnhPictureError(e))
@@ -261,5 +302,32 @@ export const saveCnhPicture = data => dispatch => {
         dispatch(saveCnhPictureProgress())
       }
     )
+  })
+}
+
+export const REQUEST_NEW_PASSWORD_START = 'REQUEST_NEW_PASSWORD_START'
+export const REQUEST_NEW_PASSWORD_ERROR = 'REQUEST_NEW_PASSWORD_ERROR'
+export const REQUEST_NEW_PASSWORD_SUCCESS = 'REQUEST_NEW_PASSWORD_SUCCESS'
+
+export const requestNewPasswordStart = () => ({
+  type: REQUEST_NEW_PASSWORD_START
+})
+
+export const requestNewPasswordError = () => ({
+  type: REQUEST_NEW_PASSWORD_ERROR
+})
+
+export const requestNewPasswordSuccess = data => ({
+  type: REQUEST_NEW_PASSWORD_SUCCESS,
+  data
+})
+
+export const requestNewPassword = data => dispatch => {
+  dispatch(requestNewPasswordStart())
+  return userService.requestPassword(data).then(response => {
+    dispatch(requestNewPasswordSuccess(response.data.data))
+    return response.data.data
+  }).catch(e => {
+    dispatch(requestNewPasswordError())
   })
 }

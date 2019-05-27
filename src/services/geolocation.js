@@ -9,7 +9,7 @@ import { Plugins } from '@capacitor/core'
 import axios from 'axios'
 import config from '../config'
 import authService from './auth'
-import localStorageService from './localstorage'
+import { INSTANT_LOCAL_GEOLOCATIONS } from '../config/consts'
 
 const { Geolocation } = Plugins
 
@@ -34,24 +34,42 @@ const getFromGPS = () =>
     }
   })
 
-const getLocalStorageList = () => {
-  const state = localStorageService.getState()
-  if (state.geolocation) {
-    const geolocationState = JSON.parse(state.geolocation)
-    return geolocationState.list || []
-  }
-  return []
-}
+const getLocalStorageList = () =>
+  JSON.parse(localStorage.getItem(INSTANT_LOCAL_GEOLOCATIONS) || '[]')
 
 const setLocalStorageList = list => {
-  const state = localStorageService.getState()
-  localStorageService.setState({ ...state, list })
+  if (list && list.length) localStorage.setItem(INSTANT_LOCAL_GEOLOCATIONS, JSON.stringify(list))
 }
 
-const add = location => {
+const addToLocalstorage = location => {
   const geolocationList = getLocalStorageList()
-  geolocationList.push(location)
+  geolocationList.push({ ...location, timestamp: new Date().toISOString() })
   setLocalStorageList(geolocationList)
 }
 
-export default { getFromGPS, add, upload }
+const removeFromLocalstorage = location => {
+  const geolocationList = getLocalStorageList()
+  const locationIndex = geolocationList.findIndex(x => x.timestamp === location.timestamp)
+  geolocationList.splice(locationIndex, 1)
+  setLocalStorageList(geolocationList)
+}
+
+const sync = () => {
+  const geolocationList = getLocalStorageList()
+  if (navigator.onLine) {
+    geolocationList.map(
+      currentLocation =>
+        new Promise(async resolveUpload => {
+          try {
+            const response = await upload(currentLocation)
+            removeFromLocalstorage(currentLocation)
+            resolveUpload(response)
+          } catch (e) {
+            console.log(e)
+          }
+        })
+    )
+  }
+}
+
+export default { getFromGPS, getLocalStorageList, addToLocalstorage, sync }

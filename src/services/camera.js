@@ -5,71 +5,81 @@
  * @description User controller.
  */
 
-import { Plugins, CameraResultType, CameraSource } from '@capacitor/core'
+import RecordRTCPromisesHandler from 'recordrtc'
 
-import exitIcon from '../assets/vectors/exit.svg'
-import reverseCameraIcon from '../assets/vectors/reverse-camera.svg'
-import confirmIcon from '../assets/vectors/confirm.svg'
-import retakeIcon from '../assets/vectors/retake.svg'
+let recorder = {}
 
-const { Camera } = Plugins
-
-const icons = [
-  { src: 'icons/exit.svg', picture: exitIcon },
-  { src: 'icons/reverse-camera.svg', picture: reverseCameraIcon },
-  { src: 'icons/confirm.svg', picture: confirmIcon },
-  { src: 'icons/retake.svg', picture: retakeIcon }
-]
-
-const updateIcons = cameraElement => {
-  const iconElements = cameraElement.querySelectorAll('img')
-  iconElements.forEach(iconElement => {
-    icons.forEach(icon => {
-      if (iconElement.src.indexOf(icon.src) > -1) {
-        iconElement.src = icon.picture
+const checkPermission = () =>
+  new Promise((resolve, reject) => {
+    if (!window.cordova) resolve()
+    const { permissions } = window.cordova.plugins
+    permissions.requestPermissions(
+      [permissions.CAMERA],
+      status => {
+        if (status.hasPermission) resolve()
+        else reject()
+      },
+      () => {
+        reject()
       }
-    })
+    )
   })
-}
 
-const fixPreviewIcons = async () => {
-  const cameraModal = document.querySelector('ion-pwa-camera-modal')
-  if (cameraModal) {
-    await cameraModal.componentOnReady()
-    setTimeout(() => {
-      const cameraElement = document.querySelector('ion-pwa-camera').shadowRoot
-      const cameraButton = cameraElement.querySelector('.shutter')
-      cameraButton.addEventListener('click', () => {
-        setTimeout(() => {
-          updateIcons(cameraElement)
-        }, 750)
-      })
-      updateIcons(cameraElement)
-    }, 300)
-  }
-}
-
-const takePicture = async () =>
+const startLivePreview = videoElement =>
   new Promise(async (resolve, reject) => {
     try {
-      Camera.getPhoto({
-        source: CameraSource.Camera,
-        resultType: CameraResultType.Base64,
-        allowEditing: false,
-        quality: 25
+      await checkPermission()
+      const camera = await navigator.mediaDevices.getUserMedia({
+        video: {
+          facingMode: 'environment',
+          width: { ideal: 400 },
+          height: { ideal: 400 }
+        },
+        audio: false
       })
-        .then(picture => {
-          console.log(picture)
-          const pictureContent = picture.dataUrl || `data:image/png;base64,${picture.base64String}`
-          resolve(pictureContent)
-        })
-        .catch(e => {
-          reject(e)
-        })
-      fixPreviewIcons()
+      videoElement.srcObject = camera
+      videoElement.onloadedmetadata = function(e) {
+        videoElement.play()
+      }
+      recorder = new RecordRTCPromisesHandler(camera, {
+        type: 'video',
+        canvas: {
+          width: 360, // suggested width
+          height: 640 // suggested height
+        }
+      })
+      recorder.camera = camera
+      recorder.startRecording()
+      resolve(recorder)
     } catch (e) {
       reject(e)
     }
   })
 
-export default { takePicture }
+const takePicture = videoElement =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const canvas = document.createElement('canvas')
+      canvas.width = videoElement.videoWidth
+      canvas.height = videoElement.videoHeight
+      canvas
+        .getContext('2d')
+        .drawImage(videoElement, 0, 0, videoElement.videoWidth, videoElement.videoHeight)
+      videoElement.srcObject.stop()
+      videoElement.pause()
+      videoElement.removeAttribute('src') // empty source
+      videoElement.load()
+      recorder.stopRecording(() => {
+        recorder.camera.stop()
+        resolve({
+          width: canvas.width,
+          height: canvas.height,
+          src: canvas.toDataURL('image/png')
+        })
+      })
+    } catch (e) {
+      reject(e)
+    }
+  })
+
+export default { startLivePreview, takePicture }

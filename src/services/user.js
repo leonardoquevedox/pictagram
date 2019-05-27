@@ -4,11 +4,7 @@ import authService from './auth'
 import utilsService from './utils'
 
 const create = params =>
-  axios.post(`${config.baseUrl}/user`, params, {
-    headers: {
-      Authorization: authService.getAuthorizationHeader()
-    }
-  })
+  axios.post(`${config.baseUrl}/user`, params)
 
 const read = () =>
   axios.get(`${config.baseUrl}/user`, {
@@ -16,6 +12,9 @@ const read = () =>
       Authorization: authService.getAuthorizationHeader()
     }
   })
+
+const getByEmail = email =>
+  axios.get(`${config.baseUrl}/user/${email}`)
 
 const update = params =>
   axios.put(`${config.baseUrl}/user`, params, {
@@ -31,10 +30,16 @@ const createRiskForm = params =>
     }
   })
 
+const requestPassword = params =>
+  axios.post(`${config.baseUrl}/request_password`, params, {
+    headers: {
+      Authorization: authService.getAuthorizationHeader()
+    }
+  })
+
 const saveCnhPicture = async (base64, onSuccess, onError, onProgress) => {
   try {
     const formData = new FormData()
-    console.log(utilsService.base64ToFile(base64))
     const filename = 'cnh.base64'
     formData.append('file', utilsService.base64ToFile(base64, filename))
     const response = await axios.post(`${config.baseUrl}/cnh`, formData, {
@@ -52,4 +57,4 @@ const saveCnhPicture = async (base64, onSuccess, onError, onProgress) => {
   }
 }
 
-export default { create, read, update, createRiskForm, saveCnhPicture }
+export default { create, read, getByEmail, update, createRiskForm, saveCnhPicture, requestPassword }

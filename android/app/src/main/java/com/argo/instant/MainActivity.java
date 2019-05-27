@@ -1,4 +1,4 @@
-package com.quitolabs.pictagram;
+package com.argo.instant;
 
 import android.os.Bundle;
 

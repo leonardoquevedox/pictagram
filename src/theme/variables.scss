@@ -1,6 +1,6 @@
-$primary: #ff9500;
-$secondary: #ffcc00;
-$tertiary: #ff5e00;
+$primary: #127bf3;
+$secondary: #15dcf4;
+$tertiary: #263dc2;
 
 $positive: #5cf590;
 $warning: #ff9141;
@@ -12,12 +12,12 @@ $grey-two: #3d4045;
 $grey-three: #ececed;
 
 $black-background: #434654;
-$white-background: white;
+$white-background: #F0F2F9;
 
 $white: #ffffff;
 
 $gradient-hue: 30;
-$device-icon-height: 30vh;
+$device-icon-height: 25vh;
 
 /* Framework7 */
 :root {
@@ -32,6 +32,6 @@ $device-icon-height: 30vh;
 .color-blue {
   --f7-theme-color: #{$primary};
   --f7-theme-color-rgb: 33, 150, 243;
-  --f7-theme-color-shade: #{$primary};
-  --f7-theme-color-tint: #{$secondary};
+  --f7-theme-color-shade: #1082f3;
+  --f7-theme-color-tint: #15dcf4;
 }

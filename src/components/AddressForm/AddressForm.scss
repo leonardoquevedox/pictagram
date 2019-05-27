@@ -1,0 +1,16 @@
+@import '../../theme/variables.scss';
+
+
+
+.form-row-70-30 {
+    display: flex;
+
+    & > *:first-child {
+        flex: 0 1 70%;
+        margin-right: 24px;
+    }
+
+    & > *:last-child {
+        flex: 0 1 30%;
+    }
+}

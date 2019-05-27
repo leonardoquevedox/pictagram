@@ -1,0 +1,84 @@
+@import '../../theme/variables.scss';
+@import '../../theme/mixins.scss';
+
+.onboarding-page {
+  &__content {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    max-width: 450px;
+    margin: auto;
+    padding: 16px;
+  }
+
+  .page-content {
+    background-color: $white-background;
+    padding-bottom: 0px;
+    margin: auto;
+  }
+
+  &__logo {
+    display: block;
+    margin: auto;
+    margin-bottom: 40px;
+  }
+
+  &__form {
+    width: 100%;
+    &.list {
+      margin-top: 0px;
+    }
+  }
+
+  &__paragraph {
+    font-size: 1.6rem;
+    text-align: center;
+    color: $grey-one;
+    margin-top: 48px;
+    margin-bottom: 32px;
+  }
+
+  &__link {
+    font-weight: bold;
+    color: $primary;
+  }
+
+  &__social-icons {
+    margin-top: 24px;
+    .button {
+      padding: 8px;
+      height: auto;
+    }
+    img {
+      vertical-align: middle;
+    }
+  }
+
+  &__vertical-line {
+    &__content {
+      line-height: 32px;
+      padding-right: 16px;
+      padding-left: 16px;
+      margin-left: calc(50% - 16px);
+      background: $white-background;
+      z-index: 2;
+    }
+    p {
+      border-top: 1px solid $black-background;
+      margin-top: -16px;
+      margin-bottom: 16px;
+    }
+  }
+
+  .button-primary.button-fill {
+    margin-top: 16px;
+  }
+  .swiper-pagination-bullet {
+    width: 16px;
+    height: 4px;
+    border-radius: 4px;
+    &.swiper-pagination-bullet-active {
+      background: $primary;
+    }
+  }
+}

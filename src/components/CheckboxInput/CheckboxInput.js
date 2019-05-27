@@ -1,7 +1,7 @@
 /**
  * @license MIT
  * @version 1.1.0
- * @author Leonardo Quevedo
+ * @author Trinca
  * @description Adaptive navbar.
  */
 
@@ -25,10 +25,10 @@ class CheckboxInput extends React.Component {
         className={`checkbox-input ${this.props.checked ? 'checked' : ''}  ${this.props.transparent ? 'transparent' : ''}`}
         disabled={this.props.disabled}>
         <Row>
-          <Col width={10}>
-            <Checkbox color="orange" checked={this.props.checked} />
+          <Col width={20}>
+            <Checkbox color="blue" checked={this.props.checked} />
           </Col>
-          <Col width={90}>{this.props.children}</Col>
+          <Col width={80}>{this.props.children}</Col>
         </Row>
       </div>
     )

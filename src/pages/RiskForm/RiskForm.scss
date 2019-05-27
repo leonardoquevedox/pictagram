@@ -1,0 +1,60 @@
+@import '../../theme/variables.scss';
+@import '../../theme/mixins.scss';
+
+.risk-form-page {
+  .page-content {
+    background-color: $white-background;
+  }
+  &__content {
+    padding: 16px;
+    padding-top: 0px;
+    max-width: 650px;
+    margin: auto;
+  }
+  &__intro {
+    font-size: 28px;
+    color: $grey-one;
+    text-align: left;
+    margin: auto;
+    font-weight: 600;
+    margin-bottom: 32px;
+  }
+  &__form {
+    &__field-group {
+      padding-top: 16px;
+      border-bottom: 2px solid #d0d7e1;
+      &__title {
+        font-size: 18px;
+        opacity: 0.6;
+      }
+      &__inputs {
+        margin-top: 16px;
+        margin-bottom: 16px;
+      }
+    }
+  }
+  &__small-letters {
+    font-family: Source Sans Pro;
+    font-size: 14px;
+    line-height: 18px;
+    color: $grey-one;
+    opacity: 0.6;
+  }
+  .col-25 {
+    .item-content.item-input {
+      padding-left: 0px;
+    }
+  }
+  .button-primary.button-fill {
+    margin-top: 16px;
+  }
+  * {
+    max-height: 9999px;
+    transition-property: all;
+    transition-duration: 500ms;
+  }
+  .hidden {
+    max-height: 0px;
+    overflow: hidden;
+  }
+}

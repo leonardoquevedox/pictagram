@@ -1,7 +1,7 @@
 /**
  * @license MIT
  * @version 1.1.0
- * @author Leonardo Quevedo
+ * @author Trinca
  * @description Adaptive navbar.
  */
 

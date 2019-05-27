@@ -1,12 +1,14 @@
 /**
  * @license MIT
  * @version 1.1.0
- * @author Leonardo Quevedo
+ * @author Trinca
  * @description User controller.
  */
 
 import 'react-app-polyfill/ie9'
 import 'babel-polyfill'
+
+
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'

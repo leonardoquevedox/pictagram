@@ -16,8 +16,8 @@ import {
 } from '../actions/hardware'
 
 const initialState = {
-  bluetooth: { isEnabling: false, isEnabled: false },
-  gps: { isEnabled: false }
+  bluetooth: { isEnabling: false, isEnabled: true },
+  gps: { isEnabled: true }
 }
 
 export default (state = initialState, action) => {

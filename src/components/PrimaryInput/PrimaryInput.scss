@@ -1,19 +1,87 @@
-@import '../../theme/variables.scss';
-@import '../../theme/mixins.scss';
-
 .input-primary {
   --f7-list-item-padding-horizontal: 0px;
-  --f7-input-outline-border-radius: 30px;
   list-style: none;
-  margin-top: 8px;
+  margin-top: 16px;
+  padding-bottom: 16px;
   .item-input-outline {
     padding-left: 0px;
+    .item-label {
+      left: 5px;
+      bottom: 5px;
+      font-size: 14px;
+      color: #080b1a;
+    }
     .item-inner {
       padding: 0px;
     }
     .item-input-wrap {
-      input {
+      input, select {
+        border: 2px solid #d0d7e1;
         font-size: 18px;
+        min-height: 64px;
+      }
+      select {
+        -webkit-appearance:none;
+        -moz-appearance:none;
+        -ms-appearance:none;
+        appearance:none;
+        background: url(../../assets/vectors/select-arrow.svg) no-repeat 95% 50%;
+        &:-ms-expand {
+            display:none;
+        }
+      }
+      &:not(.input-dropdown):after {
+        position: absolute;
+        transition-delay: 50ms;
+        transition-property: all;
+        transition-duration: 100ms;
+        transition-timing-function: ease-in;
+        background: #d0d7e1;
+        border: none;
+        border-radius: 10px;
+        z-index: -1;
+      }
+      &.input-dropdown:before {
+          content: '';
+          display: none;
+      }
+    }
+    &.item-input-focused {
+      .item-label {
+        color: #080b1a;
+      }
+      input, select {
+        border: none;
+      }
+      .item-input-wrap:not(.input-dropdown) {
+        &:after {
+          background: linear-gradient(270deg, #1052f3 -53.49%, #15dcf4 132.56%);
+          border: none;
+          padding: 2px;
+          margin-top: -2px;
+          margin-bottom: -2px;
+          margin-left: -2px;
+          margin-right: -2px;
+          width: calc(100% + 4px);
+          height: calc(100% + 4px);
+        }
+      }
+    }
+  }
+  &.disabled {
+    opacity: 1 !important;
+    .item-label {
+      left: 0px;
+      bottom: -10px;
+    }
+    .item-input-wrap {
+      input, select {
+        padding-left: 0px;
+        border: none;
+        background: transparent;
+      }
+      &:after {
+        background: transparent !important;
       }
     }
   }

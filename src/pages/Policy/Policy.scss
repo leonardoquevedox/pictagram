@@ -1,0 +1,79 @@
+@import '../../theme/variables.scss';
+@import '../../theme/mixins.scss';
+
+.policy-page {
+  .page-content {
+    padding: 16px;
+    background-color: $white-background;
+  }
+  .app-navbar {
+    width: 100%;
+    &__title {
+      color: $primary;
+    }
+    div:first-of-type {
+      width: 40%;
+    }
+    div:last-child {
+      width: 10%;
+      img {
+        vertical-align: text-bottom;
+      }
+    }
+  }
+  &__intro {
+    margin-top: 24px;
+    padding: 0 16px;
+    &__title {
+      font-family: Source Sans Pro;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 28px;
+      line-height: 35px;
+      color: #080b1a;
+      margin-bottom: 8px;
+    }
+    &__description {
+      font-family: Source Sans Pro;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 23px;
+      color: #080b1a;
+      opacity: 0.7;
+      margin-bottom: 16px;
+    }
+  }
+  &__list {
+    display: flex;
+  }
+  &__item {
+    padding: 16px;
+    width: 100%;
+    &__left {
+      display: inline-block;
+      width: 15%;
+    }
+    &__middle {
+      display: inline-block;
+      width: 85%;
+    }
+    &__title {
+      font-family: Source Sans Pro;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 18px;
+      color: $primary;
+    }
+    &__description {
+      font-family: Source Sans Pro;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 18px;
+      color: #3d4045;
+      opacity: 0.5;
+    }
+  }
+}

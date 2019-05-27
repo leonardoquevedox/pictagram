@@ -1,7 +1,7 @@
 /**
  * @license MIT
  * @version 1.1.0
- * @author Leonardo Quevedo
+ * @author Trinca
  * @description User controller.
  */
 
@@ -27,7 +27,7 @@ const checkBluetoothState = () =>
         }
       )
     } else {
-      resolve(false)
+      resolve(true)
     }
   })
 
@@ -38,6 +38,19 @@ const isBluetoothEnabledState = state => {
   }
   return false
 }
+
+const enableBluetooth = () =>
+  new Promise(resolve => {
+    const { ble } = window
+    ble.enable(
+      () => {
+        resolve()
+      },
+      () => {
+        resolve()
+      }
+    )
+  })
 
 const onGpsStateChange = onChange => {
   if (window.cordova && window.cordova.plugins) {
@@ -60,7 +73,7 @@ const checkGpsState = () =>
         }
       )
     } else {
-      resolve(false)
+      resolve(true)
     }
   })
 
@@ -76,6 +89,7 @@ export default {
   onBluetoothStateChange,
   checkBluetoothState,
   isBluetoothEnabledState,
+  enableBluetooth,
   onGpsStateChange,
   checkGpsState,
   isGpsEnabledState
