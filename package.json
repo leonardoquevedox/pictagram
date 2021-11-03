@@ -48,7 +48,7 @@
     "redux-persist": "^5.10.0",
     "redux-persist-transform-filter": "^0.0.18",
     "redux-thunk": "^2.3.0",
-    "validator": "^10.11.0",
+    "validator": "^13.7.0",
     "vanilla-masker": "^1.2.0"
   },
   "devDependencies": {
